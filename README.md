@@ -19,9 +19,11 @@ First, download the original SParC from [here](https://yale-lily.github.io/sparc
 
 Also, download ``glove.840B.300d.txt" from this [site](https://nlp.stanford.edu/projects/glove/), specify its path in run_sparc_cdseq2seq.sh.
 
-### Test Sparc
+### Test with Your Own Utterances
 
-The model checkpoint is already in the dir `logs_sparc_cdseq2seq/save_23', 
-Run the following command to generate the predictions on the validation set. 
+In data/spac_data/dev.json, I create two modified interaction turns from data/spac_data/dev.orig.json. Run the following command
 
-- `run_sparc_cdseq2seq.sh` to run the decoding with the trained system
+- `run_sparc_cdseq2seq.sh` to generate their predictions, which will be in logs_sparc_cdseq2seq/valid_use_predicted_queries_predictions.json . 
+
+So you can just rephrase some interaction turns in dev.orig.json and put it in dev.json.
+Then run the script above will give you the predictions of the system

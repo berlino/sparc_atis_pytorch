@@ -48,9 +48,13 @@ class ATISDataset():
                 os.path.join(params.data_directory, params.processed_validation_filename),
                 params.raw_validation_filename,
                 int_load_function)
+            self.valid_data_orig = ds.DatasetSplit(
+                os.path.join(params.data_directory, params.processed_validation_filename + ".tmp"),
+                "data/sparc_data/dev.orig.pkl",
+                int_load_function)
 
             train_input_seqs = collapse_list(self.train_data.get_ex_properties(lambda i: i.input_seqs()))
-            valid_input_seqs = collapse_list(self.valid_data.get_ex_properties(lambda i: i.input_seqs()))
+            valid_input_seqs = collapse_list(self.valid_data_orig.get_ex_properties(lambda i: i.input_seqs()))
 
             all_input_seqs = train_input_seqs + valid_input_seqs
 
@@ -69,7 +73,7 @@ class ATISDataset():
                 anonymizer=self.anonymizer if params.anonymization_scoring else None)
 
             train_output_seqs = collapse_list(self.train_data.get_ex_properties(lambda i: i.output_seqs()))
-            valid_output_seqs = collapse_list(self.valid_data.get_ex_properties(lambda i: i.output_seqs()))
+            valid_output_seqs = collapse_list(self.valid_data_orig.get_ex_properties(lambda i: i.output_seqs()))
             all_output_seqs = train_output_seqs + valid_output_seqs
 
             sql_keywords = ['.', 't1', 't2', '=', 'select', 'as', 'join', 'on', ')', '(', 'where', 't3', 'by', ',', 'group', 'distinct', 't4', 'and', 'limit', 'desc', '>', 'avg', 'having', 'max', 'in', '<', 'sum', 't5', 'intersect', 'not', 'min', 'except', 'or', 'asc', 'like', '!', 'union', 'between', 't6', '-', 't7', '+', '/']

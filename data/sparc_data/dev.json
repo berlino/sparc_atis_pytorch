@@ -1,0 +1,46 @@
+[
+    {
+        "id": "",
+        "scenario": "",
+        "database_id": "cre_Doc_Template_Mgt",
+        "interaction_id": 0,
+        "final": {
+            "utterance": "List document IDs, document names, and document descriptions for all documents.",
+            "sql": "SELECT document_id ,  document_name ,  document_description FROM Documents"
+        },
+        "interaction": [
+            {
+                "utterance": "Show information for all documents and their ids .",
+                "sql": "select * from documents"
+            },
+            {
+                "utterance": "Also show their document names and document descriptions .",
+                "sql": "select document_id , document_name , document_description from documents"
+            }
+        ]
+    },
+    {
+        "id": "",
+        "scenario": "",
+        "database_id": "cre_Doc_Template_Mgt",
+        "interaction_id": 1,
+        "final": {
+            "utterance": "What is the document name and template id for document with description with the letter 'w' in it?",
+            "sql": "SELECT document_name ,  template_id FROM Documents WHERE Document_Description LIKE \"%w%\""
+        },
+        "interaction": [
+            {
+                "utterance": "Show the document name for all documents and their description .",
+                "sql": "select document_name from documents"
+            },
+            {
+                "utterance": "Which one has description with the letter 'w ' in it ?",
+                "sql": "select document_name from documents where document_description like value"
+            },
+            {
+                "utterance": "Show its name and template id .",
+                "sql": "select document_name , template_id from documents where document_description like value"
+            }
+        ]
+    }
+]

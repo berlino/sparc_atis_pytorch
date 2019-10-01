@@ -2,7 +2,9 @@
 
 # 1. preprocess dataset by the following. It will produce data/sparc_data/
 
-python3 preprocess.py --dataset=sparc
+# python3 preprocess.py --dataset=sparc
+rm -rf processed_data_sparc
+python3 data/sparc_data/json2pkl.py data/sparc_data/dev.json data/sparc_data/dev.pkl
 
 # 2. train and evaluate.
 #    the result (models, logs, prediction outputs) are saved in $LOGDIR

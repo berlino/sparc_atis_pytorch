@@ -80,18 +80,6 @@ def write_and_evaluate(postprocess_sqls, db_path, table_schema_path, gold_path, 
                                                                                                       os.path.abspath(output_file))
     command += '; rm output_temp.txt'
 
-
-  if dataset in ['sparc', 'cosql']:
-    cnt = 0
-    output_file = 'sparc_prediction.txt'
-    with open(output_file, "w") as f:
-      for db in db_list:
-        for postprocess_sql, interaction_id, turn_id in postprocess_sqls[db]:
-          if turn_id == 0 and cnt > 0:
-            f.write('\n')
-          f.write('{}\n'.format(postprocess_sql))
-          cnt += 1
-
   return command
 
 if __name__ == '__main__':
@@ -117,10 +105,10 @@ if __name__ == '__main__':
   predictions = read_prediction(pred_file)
   postprocess_sqls = postprocess(predictions, database_schema)
 
-  command = write_and_evaluate(postprocess_sqls, db_path, table_schema_path, gold_path, args.dataset)
+  # command = write_and_evaluate(postprocess_sqls, db_path, table_schema_path, gold_path, args.dataset)
 
   # print(command)
-  eval_output = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
-  with open(pred_file+'.eval', 'w') as f:
-    f.write(eval_output.decode("utf-8"))
-  print('Eval result in', pred_file+'.eval')
+  # eval_output = subprocess.check_output(command, stderr=subprocess.STDOUT, shell=True)
+  # with open(pred_file+'.eval', 'w') as f:
+  #   f.write(eval_output.decode("utf-8"))
+  # print('Eval result in', pred_file+'.eval')
