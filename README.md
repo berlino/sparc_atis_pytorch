@@ -21,7 +21,7 @@ Also, download ``glove.840B.300d.txt" from this [site](https://nlp.stanford.edu/
 
 ### Test Sparc
 
-The pretrained model is already in the dir `logs_sparc_cdseq2seq', run
-the following command to generate the predictions on the validation set. 
+The model checkpoint is already in the dir `logs_sparc_cdseq2seq/save_23', 
+Run the following command to generate the predictions on the validation set. 
 
 - `run_sparc_cdseq2seq.sh` to run the decoding with the trained system
