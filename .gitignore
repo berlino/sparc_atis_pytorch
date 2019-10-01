@@ -1,0 +1,12 @@
+data/sparc_data
+data/sparc_original
+data/sparc.zip
+
+glove
+processed_data_sparc/
+logs_sparc_cdseq2seq/
+
+__pycache__
+.vscode
+.DS_Store
+*.pyc

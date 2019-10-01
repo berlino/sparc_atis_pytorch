@@ -354,6 +354,9 @@ class ATISModel(torch.nn.Module):
         Inputs:
             filename (str): Name of file containing parameters.
         """
-        self.load_state_dict(torch.load(filename))
+        if not torch.cuda.is_available():
+            self.load_state_dict(torch.load(filename, map_location='cpu'))
+        else:
+            self.load_state_dict(torch.load(filename))
         print("Loaded model from file " + filename)
 

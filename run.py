@@ -300,11 +300,12 @@ def main():
         data.output_vocabulary_schema,
         data.anonymizer if params.anonymize and params.anonymization_scoring else None)
 
-    model = model.cuda()
+    if torch.cuda.is_available():
+        model = model.cuda()
     print('=====================Model Parameters=====================')
     for name, param in model.named_parameters():
         print(name, param.requires_grad, param.is_cuda, param.size())
-        assert param.is_cuda
+        # assert param.is_cuda
 
     model.build_optim()
 
@@ -316,7 +317,7 @@ def main():
 
     sys.stdout.flush()
 
-    last_save_file = ""
+    last_save_file = "logs_sparc_cdseq2seq/save_23"
 
     if params.train:
         last_save_file = train(model, data, params)
