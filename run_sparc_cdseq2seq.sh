@@ -31,3 +31,5 @@ CUDA_VISIBLE_DEVICES=0 python3 run.py --raw_train_filename="data/sparc_data/trai
 # 3. get evaluation result
 
 python3 postprocess_eval.py --dataset=sparc --split=dev --pred_file $LOGDIR/valid_use_predicted_queries_predictions.json
+
+rm output_temp.txt
